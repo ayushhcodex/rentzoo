@@ -205,7 +205,7 @@ section {
 .hero {
   padding: 220px 0 160px;
   background-color: var(--dark);
-  background-image: url('assets/images/hero-real-bg.jpg');
+  background-image: url('assets/images/app-mockup.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
