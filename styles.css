@@ -1078,3 +1078,210 @@ section {
   .ps-card { padding: 24px; }
   .company-story { padding: 60px 0; }
 }
+
+/* ---------- LEGAL PAGES ---------- */
+.legal-page {
+  padding: 120px 0 60px;
+  background: var(--gray-100);
+}
+
+.legal-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.legal-sidebar {
+  position: sticky;
+  top: 100px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.legal-sidebar h4 {
+  font-weight: 600;
+  font-size: .95rem;
+  color: var(--black);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.legal-sidebar ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.legal-sidebar a {
+  font-size: .85rem;
+  color: var(--gray-600);
+  transition: var(--transition);
+  display: block;
+}
+
+.legal-sidebar a:hover,
+.legal-sidebar a.active {
+  color: var(--black);
+  font-weight: 600;
+}
+
+.legal-content-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 48px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.legal-content-card .last-updated {
+  font-size: .85rem;
+  color: var(--gray-400);
+  margin-bottom: 24px;
+  display: inline-block;
+  background: var(--gray-100);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.legal-section-block {
+  margin-bottom: 40px;
+  scroll-margin-top: 100px;
+}
+
+.legal-section-block:last-child {
+  margin-bottom: 0;
+}
+
+.legal-section-block h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 16px;
+  letter-spacing: -.01em;
+}
+
+.legal-section-block p {
+  font-size: .95rem;
+  color: var(--gray-600);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.legal-section-block a {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.legal-section-block a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- FAQ ---------- */
+.faq-section {
+  padding: 100px 0;
+  background: var(--gray-100);
+}
+
+.faq-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.faq-header .section-subtitle { margin: 0 auto; }
+
+.faq-accordion {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.faq-item.active {
+  border-color: var(--black);
+}
+
+.faq-item-header {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background: var(--white);
+}
+
+.faq-item-header h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--black);
+  margin: 0;
+}
+
+.faq-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  color: var(--gray-600);
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+  color: var(--gold);
+}
+
+.faq-item-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  background: var(--white);
+}
+
+.faq-item.active .faq-item-content {
+  max-height: 1000px;
+  padding: 0 24px 24px 24px;
+}
+
+.faq-item-content p {
+  font-size: .95rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+}
+
+@media (max-width: 1024px) {
+  .legal-grid {
+    grid-template-columns: 240px 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .legal-grid {
+    grid-template-columns: 1fr;
+  }
+  .legal-sidebar {
+    position: relative;
+    top: 0;
+    margin-bottom: 24px;
+  }
+  .legal-content-card {
+    padding: 32px 24px;
+  }
+}

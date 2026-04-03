@@ -95,4 +95,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // FAQ Accordion
+  const faqItems = document.querySelectorAll('.faq-item-header');
+  faqItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const parent = item.parentElement;
+      const isActive = parent.classList.contains('active');
+      
+      // Close all items
+      document.querySelectorAll('.faq-item').forEach(faq => {
+        faq.classList.remove('active');
+      });
+
+      // Open clicked item if it wasn't already active
+      if (!isActive) {
+        parent.classList.add('active');
+      }
+    });
+  });
+
 });
