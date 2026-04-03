@@ -114,4 +114,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Contact Form WhatsApp Integration
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const inquiry = document.getElementById('inquiry').value;
+      const message = document.getElementById('message').value;
+
+      const whatsappNumber = "917013708828";
+      const text = `Hi Rentzoo!\n\nI just filled out the contact form:\n- Name: ${name}\n- Email: ${email}\n- Inquiry: ${inquiry}\n\nMessage:\n${message}`;
+      const encodedText = encodeURIComponent(text);
+      
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodedText}`, '_blank');
+      
+      // Optional: Reset form after opening WhatsApp
+      contactForm.reset();
+    });
+  }
+
 });
