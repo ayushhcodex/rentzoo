@@ -869,6 +869,40 @@ section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  justify-items: center;
+}
+
+/* Center the last row when it has fewer than 3 items (e.g. 5 member team) */
+.team-grid .team-card:nth-child(4) {
+  grid-column: 1 / 2;
+}
+
+.team-grid .team-card:nth-child(4):last-child,
+.team-grid .team-card:nth-child(5):last-child {
+  grid-column: auto;
+}
+
+/* For a 5-member grid: shift the 4th & 5th cards to center the bottom row */
+.team-grid:has(.team-card:nth-child(5):last-child) .team-card:nth-child(4) {
+  grid-column: 1 / 2;
+  margin-left: 50%;
+}
+
+.team-grid:has(.team-card:nth-child(5):last-child) {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.team-grid:has(.team-card:nth-child(5):last-child) .team-card {
+  grid-column: span 2;
+}
+
+.team-grid:has(.team-card:nth-child(5):last-child) .team-card:nth-child(4) {
+  grid-column: 2 / span 2;
+  margin-left: 0;
+}
+
+.team-grid:has(.team-card:nth-child(5):last-child) .team-card:nth-child(5) {
+  grid-column: 4 / span 2;
 }
 
 .team-card {
