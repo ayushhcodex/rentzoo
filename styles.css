@@ -150,13 +150,13 @@ section {
 }
 
 .nav-logo img {
-  height: 34px;
+  height: 48px;
   width: auto;
 }
 
 .nav-logo span {
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: var(--black);
   letter-spacing: -.01em;
 }
