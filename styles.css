@@ -29,7 +29,20 @@
 /* ---- Reset ---- */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body { font-family: var(--font); background: var(--white); color: var(--gray-5); line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body { 
+  font-family: var(--font); 
+  background: var(--white); 
+  color: var(--gray-5); 
+  line-height: 1.7; 
+  -webkit-font-smoothing: antialiased; 
+  overflow-x: hidden; 
+  animation: pageFadeIn 0.5s ease-out;
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 a { text-decoration: none; color: inherit; }
 ul, ol { list-style: none; }
 img { max-width: 100%; display: block; }
@@ -1532,6 +1545,7 @@ a.footer-contact-row:hover { color: var(--white); }
    INTERACTIVE DUAL FLOWCHART (#8)
    ================================================ */
 .flow-tabs {
+  position: relative;
   display: flex;
   justify-content: center;
   gap: 0;
@@ -1545,20 +1559,33 @@ a.footer-contact-row:hover { color: var(--white); }
   margin-right: auto;
 }
 
+.flow-indicator {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  height: calc(100% - 8px);
+  background: var(--black);
+  border-radius: 50px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
 .flow-tab {
+  position: relative;
   flex: 1;
   padding: 12px 20px;
   text-align: center;
   font-weight: 700;
   font-size: .85rem;
-  color: var(--gray-4);
+  color: var(--gray-400); /* Use specific color token */
   cursor: pointer;
   border-radius: 50px;
-  transition: var(--ease);
+  transition: color 0.4s var(--ease);
+  z-index: 2;
 }
 
 .flow-tab.active {
-  background: var(--black);
   color: var(--gold);
 }
 
@@ -1570,7 +1597,15 @@ a.footer-contact-row:hover { color: var(--white); }
   gap: 16px;
 }
 
-.flow-steps.active { display: grid; }
+.flow-steps.active {
+  display: grid;
+  animation: flowFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes flowFadeIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
 
 .flow-step {
   background: var(--white);
@@ -1690,9 +1725,21 @@ a.footer-contact-row:hover { color: var(--white); }
   font-size: .95rem;
 }
 
-.catalog-earn-mode .machine-card .earn-price { display: block; }
+.catalog-earn-mode .machine-card .earn-price { 
+  display: block; 
+  animation: modeFadeIn 0.4s var(--ease);
+}
 .catalog-earn-mode .machine-card .machine-action { display: none; }
-.catalog-earn-mode .machine-card .machine-badge { background: var(--gold); color: var(--black); }
+.catalog-earn-mode .machine-card .machine-badge { 
+  background: var(--gold); 
+  color: var(--black);
+  transition: all 0.4s var(--ease);
+}
+
+@keyframes modeFadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* ================================================
    APP CTA SECTION

@@ -191,6 +191,7 @@ function switchFlow(type) {
   const tabOwner = document.getElementById('tabOwner');
   const flowContractor = document.getElementById('flowContractor');
   const flowOwner = document.getElementById('flowOwner');
+  const indicator = document.getElementById('flowIndicator');
 
   if (!tabContractor || !tabOwner || !flowContractor || !flowOwner) return;
 
@@ -199,11 +200,13 @@ function switchFlow(type) {
     tabOwner.classList.remove('active');
     flowContractor.classList.add('active');
     flowOwner.classList.remove('active');
+    if (indicator) indicator.style.transform = 'translateX(0)';
   } else {
     tabOwner.classList.add('active');
     tabContractor.classList.remove('active');
     flowOwner.classList.add('active');
     flowContractor.classList.remove('active');
+    if (indicator) indicator.style.transform = 'translateX(100%)';
   }
 }
 
