@@ -7,27 +7,52 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile Menu
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
+  const navOverlay = document.getElementById('navOverlay');
+
+  function closeMenu() {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+    if (navOverlay) navOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function openMenu() {
+    hamburger.classList.add('active');
+    navLinks.classList.add('open');
+    if (navOverlay) navOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 
   if (hamburger && navLinks) {
     hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navLinks.classList.toggle('open');
+      if (navLinks.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
 
     navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('open');
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        const isHome = href === '/' || href === '/index.html';
+        const isCurrentHome = window.location.pathname === '/' || window.location.pathname === '/index.html';
+
+        // Close menu with a delay to ensure the click registers on mobile
+        setTimeout(closeMenu, 300);
+
+        if (isHome && isCurrentHome && !href.includes('#')) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       });
     });
 
-    document.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('open');
-      }
-    });
+    if (navOverlay) {
+      navOverlay.addEventListener('click', closeMenu);
+    }
   }
+
 
   // Scroll Reveal
   const revealElements = document.querySelectorAll('.reveal');
@@ -95,11 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // FAQ Accordion
-  const faqItems = document.querySelectorAll('.faq-item-header');
-  faqItems.forEach(item => {
+  // FAQ Accordion (support both class names)
+  const faqHeaders = document.querySelectorAll('.faq-item-header, .faq-q');
+  faqHeaders.forEach(item => {
     item.addEventListener('click', () => {
-      const parent = item.parentElement;
+      const parent = item.closest('.faq-item');
       const isActive = parent.classList.contains('active');
       
       // Close all items
@@ -136,4 +161,68 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ============================
+  // ROI Earnings Calculator (#4)
+  // ============================
+  const roiEquipment = document.getElementById('roiEquipment');
+  const roiDays = document.getElementById('roiDays');
+  const roiDaysValue = document.getElementById('roiDaysValue');
+  const roiAmount = document.getElementById('roiAmount');
+
+  function updateROI() {
+    if (!roiEquipment || !roiDays) return;
+    const rate = parseInt(roiEquipment.value, 10);
+    const days = parseInt(roiDays.value, 10);
+    const total = rate * days;
+    if (roiDaysValue) roiDaysValue.textContent = days;
+    if (roiAmount) roiAmount.textContent = '₹' + total.toLocaleString('en-IN');
+  }
+
+  if (roiEquipment) roiEquipment.addEventListener('change', updateROI);
+  if (roiDays) roiDays.addEventListener('input', updateROI);
+
 });
+
+// ============================
+// Dual Flowchart Tabs (#8)
+// ============================
+function switchFlow(type) {
+  const tabContractor = document.getElementById('tabContractor');
+  const tabOwner = document.getElementById('tabOwner');
+  const flowContractor = document.getElementById('flowContractor');
+  const flowOwner = document.getElementById('flowOwner');
+
+  if (!tabContractor || !tabOwner || !flowContractor || !flowOwner) return;
+
+  if (type === 'contractor') {
+    tabContractor.classList.add('active');
+    tabOwner.classList.remove('active');
+    flowContractor.classList.add('active');
+    flowOwner.classList.remove('active');
+  } else {
+    tabOwner.classList.add('active');
+    tabContractor.classList.remove('active');
+    flowOwner.classList.add('active');
+    flowContractor.classList.remove('active');
+  }
+}
+
+// ============================
+// Catalog Toggle Switch (#6)
+// ============================
+function toggleCatalogMode() {
+  const toggle = document.getElementById('catalogToggle');
+  const section = document.getElementById('catalogSection');
+  const labelRent = document.getElementById('labelRent');
+  const labelEarn = document.getElementById('labelEarn');
+
+  if (!toggle || !section) return;
+
+  const isEarn = toggle.classList.toggle('earn-mode');
+  section.classList.toggle('catalog-earn-mode', isEarn);
+
+  if (labelRent && labelEarn) {
+    labelRent.classList.toggle('active', !isEarn);
+    labelEarn.classList.toggle('active', isEarn);
+  }
+}
