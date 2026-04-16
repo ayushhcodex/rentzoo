@@ -52,11 +52,10 @@
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav class="navbar" id="navbar">
     <div class="container nav-inner">
-      <a href="/" class="nav-logo">
-        <img src="assets/images/logo.png" alt="Rentzoo">
+      <a href="/" class="nav-logo" id="nav-logo">
+        <img src="assets/images/logo.png" alt="Rentzoo Logo">
       </a>
 
       <ul class="nav-links" id="navLinks">
@@ -67,9 +66,12 @@
         <li><a href="/contact.html">Contact</a></li>
       </ul>
 
-      <div class="nav-cta">
-        <a href="https://wa.me/917013708828" class="btn btn-primary" target="_blank" rel="noopener">
-          Get in Touch
+      <div class="nav-right">
+        <a href="#" class="btn btn-nav-outline nav-cta-btn" onclick="event.preventDefault(); document.getElementById('waIntentModal').classList.add('active');">
+          Register Machine
+        </a>
+        <a href="#" class="btn btn-primary nav-cta-btn" id="nav-whatsapp-btn" onclick="event.preventDefault(); document.getElementById('waIntentModal').classList.add('active');">
+          Get Equipment
         </a>
         <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
           <span></span><span></span><span></span>
