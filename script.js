@@ -49,13 +49,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const isHome = href === '/' || href === '/index.html';
         const isCurrentHome = window.location.pathname === '/' || window.location.pathname === '/index.html';
 
-        // Close menu with a delay to ensure the click registers on mobile
-        setTimeout(closeMenu, 300);
+        // Always prevent default to control the mobile menu closing animation safely
+        e.preventDefault();
+        closeMenu();
 
-        if (isHome && isCurrentHome && !href.includes('#')) {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        setTimeout(() => {
+          if (isHome && isCurrentHome && !href.includes('#')) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else if (href.includes('#') && isCurrentHome) {
+            const targetId = href.substring(href.indexOf('#'));
+            const target = document.querySelector(targetId);
+            if (target) {
+              window.scrollTo({
+                top: target.getBoundingClientRect().top + window.pageYOffset - 72,
+                behavior: 'smooth'
+              });
+            } else {
+              window.location.href = href;
+            }
+          } else {
+            window.location.href = href;
+          }
+        }, 300);
       });
     });
 
