@@ -46,31 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
-        const isHome = href === '/' || href === '/index.html';
-        const isCurrentHome = window.location.pathname === '/' || window.location.pathname === '/index.html';
-
-        // Always prevent default to control the mobile menu closing animation safely
-        e.preventDefault();
-        closeMenu();
-
-        setTimeout(() => {
-          if (isHome && isCurrentHome && !href.includes('#')) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          } else if (href.includes('#') && isCurrentHome) {
-            const targetId = href.substring(href.indexOf('#'));
-            const target = document.querySelector(targetId);
-            if (target) {
-              window.scrollTo({
-                top: target.getBoundingClientRect().top + window.pageYOffset - 72,
-                behavior: 'smooth'
-              });
-            } else {
-              window.location.href = href;
-            }
-          } else {
-            window.location.href = href;
-          }
-        }, 300);
+        
+        // Only close the menu if clicking a hash link (same-page navigation)
+        // For standard links, we let the browser navigate normally so mobile Safari doesn't abort the request.
+        if (href && href.includes('#')) {
+          closeMenu();
+        }
       });
     });
 
