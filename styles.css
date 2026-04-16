@@ -1183,6 +1183,9 @@ a.footer-contact-row:hover { color: var(--white); }
 .team-card:hover .team-card-img img { filter: grayscale(0%); }
 
 .team-card h3 { font-weight: 700; font-size: .98rem; color: var(--black); margin-bottom: 4px; }
+.team-social { margin-top: 8px; display: flex; justify-content: center; gap: 10px; margin-bottom: 4px; }
+.team-social a { color: var(--teal); transition: color .2s; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.team-social a:hover { color: var(--gold); }
 .team-card .role { font-size: .7rem; color: var(--gold-d); font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
 .team-card .bio { font-size: .8rem; color: var(--gray-4); line-height: 1.65; margin-top: 12px; }
 
