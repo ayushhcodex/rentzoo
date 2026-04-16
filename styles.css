@@ -1388,6 +1388,16 @@ a.footer-contact-row:hover { color: var(--white); }
   .team-grid:has(.team-card:nth-child(5):last-child) .team-card:nth-child(4) { grid-column: 2 / span 2; }
   .team-grid:has(.team-card:nth-child(5):last-child) .team-card:nth-child(5) { grid-column: 4 / span 2; }
 
+  /* 4-member centering */
+  .team-grid:has(.team-card:nth-child(4):last-child) { grid-template-columns: repeat(4, 1fr); }
+  .team-grid:has(.team-card:nth-child(4):last-child) .team-card { grid-column: span 2; }
+  .team-grid:has(.team-card:nth-child(4):last-child) :is(.team-card:nth-child(3), .team-card:nth-child(4)) { grid-row: 2; }
+  
+  @media (min-width: 1200px) {
+    .team-grid:has(.team-card:nth-child(4):last-child) { grid-template-columns: repeat(4, 1fr); }
+    .team-grid:has(.team-card:nth-child(4):last-child) .team-card { grid-column: span 1; }
+  }
+
   .footer-brand { flex: 1 1 auto; max-width: 320px; }
   .footer-links { flex: 1; }
 
