@@ -23,7 +23,7 @@
   --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --max: 1100px;
   --ease: all .22s ease;
-  --r: 10px;
+  --r: 12px;
 }
 
 /* ---- Reset ---- */
@@ -1174,7 +1174,7 @@ a.footer-contact-row:hover { color: var(--white); }
 
 .team-card-img {
   width: 88px; height: 88px;
-  border-radius: 50%;
+  border-radius: 18px;
   margin: 0 auto 16px;
   overflow: hidden;
   border: 2px solid var(--gray-2);
