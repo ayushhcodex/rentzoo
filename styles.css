@@ -199,15 +199,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-bottom: 1px solid var(--gray-2);
 }
 
-/* Mobile: Scrollable Top Menu (No Hamburger) */
 .nav-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  min-height: 60px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  height: 60px;
 }
 
 .nav-logo {
@@ -226,52 +222,55 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   letter-spacing: -.02em;
 }
 
+/* Mobile: Top Slide-Down Drawer */
 .nav-links {
-  order: 3;
+  position: absolute;
+  top: 100%; /* drops down right under the navbar */
+  left: 0;
   width: 100%;
-  position: static;
-  background: transparent;
+  background: var(--white);
   display: flex !important;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 16px;
-  padding: 10px 0 4px;
-  margin-top: 8px;
-  border-top: 1px solid var(--gray-2);
-  box-shadow: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+  border-bottom: 2px solid var(--black);
+  z-index: 950;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   
-  /* Horizontal scrolling */
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
-  
-  opacity: 1;
-  visibility: visible;
-  max-height: none;
-  transform: none;
+  /* Robust drawer animation using max-height */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s ease;
 }
 
-.nav-links::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+.nav-links.open {
+  opacity: 1;
+  visibility: visible;
+  max-height: 400px; /* enough to show all links */
 }
 
 .nav-links li {
-  width: auto;
-  border: none;
-  flex-shrink: 0;
+  width: 100%;
+  border-bottom: 1px solid var(--gray-2);
+}
+
+.nav-links li:last-child {
+  border-bottom: none;
 }
 
 .nav-links li a {
-  display: inline-block;
-  padding: 6px 4px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--gray-5);
-  text-align: center;
-  transition: color 0.2s ease;
-  border-radius: 0;
+  display: block;
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--black);
+  text-align: left;
+  transition: background 0.2s ease, opacity 0.2s ease;
 }
 
 .nav-links li a:active {
@@ -280,31 +279,63 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .nav-links li a:hover,
 .nav-links li a.active {
-  color: var(--black);
-  background: transparent;
+  background: var(--gray-1);
 }
 
-.nav-right { 
-  display: flex; 
-  align-items: center; 
-  gap: 6px; 
-  order: 2;
+.nav-right { display: flex; align-items: center; gap: 4px; }
+
+.nav-cta-btn {
+  display: inline-flex;
+  font-size: .58rem;
+  padding: 5px 8px;
+  white-space: nowrap;
+  letter-spacing: -0.2px;
 }
 
-/* Hide Hamburger Globally */
+/* Modern hamburger with animated bars */
 .hamburger {
-  display: none !important;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 1100;
+  position: relative;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: var(--black);
+  border-radius: 3px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease,
+              background 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger.active span {
+  background: var(--black);
+}
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* Overlay for the menu */
 .nav-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.4);
-  z-index: 890;
+  display: none !important;
 }
-.nav-overlay.active { display: block; }
 
 /* ================================================
    HERO
