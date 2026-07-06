@@ -1195,13 +1195,6 @@ a.footer-contact-row:hover { color: var(--white); }
 .story-content p { font-size: .95rem; color: var(--black); line-height: 1.9; margin-bottom: 18px; font-weight: 500; }
 .story-content strong { color: var(--teal); font-weight: 800; }
 
-.story-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-top: 40px; }
-.story-stat { text-align: center; padding: 24px 12px; border-radius: var(--r); background: var(--gray-1); }
-.story-stat .stat-num { font-size: 1.5rem; color: var(--black); }
-.story-stat .stat-lbl { font-size: .72rem; margin-top: 4px; }
-
-.text-gold { color: var(--gold-d); }
-
 /* ================================================
    LEGAL PAGES
    ================================================ */

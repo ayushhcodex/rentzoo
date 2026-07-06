@@ -2,7 +2,7 @@
 // Rentzoo Service Worker — PWA Offline Support
 // ================================================
 
-const CACHE_NAME = 'rentzoo-v1';
+const CACHE_NAME = 'rentzoo-v2';
 const OFFLINE_URL = '/';
 
 // Core assets to pre-cache on install
